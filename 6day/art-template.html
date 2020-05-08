@@ -1,0 +1,49 @@
+<!-- art-template js模板引擎 -->
+<!-- 强调：模板引擎不关心你的字符串内容，只关心自己能认识的模板标记语法，例如{{}} -->
+<!-- {{}}语法被称之为mustache语法，八字胡语法 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在浏览器中使用模板引擎</title>
+</head>
+
+<body>
+    <!-- 注意在浏览器中需要引用/lib/template-web.js文件 -->
+    <script src="../node_modules/art-template/lib/template-web.js"></script>
+    <!-- text/template防止浏览器当作js去解析文件 -->
+    <script type="text/template" id="tpl">
+        大家好，我叫{{name}}
+        我今年:{{age}}岁了
+        我喜欢:{{each hobbies}} {{$value}} {{/each}}
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            <p>大家好，我叫{{name}}</p>
+            <p>我今年:{{age}}岁了</p>
+            <h6> 我喜欢:{{each hobbies}} {{$value}} {{/each}}</h6>
+        </body>
+        </html>
+    </script>
+    <script>
+        var ret = template('tpl', {
+            name: "jack",
+            age: "120",
+            hobbies: [
+                '写代码',
+                '唱歌',
+                '跑步'
+            ]
+        })
+        console.log(ret)
+    </script>
+</body>
+
+</html>
